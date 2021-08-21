@@ -1,5 +1,11 @@
 # first-nuxt-app
 
+##  lib
+AFrame
+https://www.npmjs.com/package/aframe
+
+
+
 ## Build Setup
 
 ```bash

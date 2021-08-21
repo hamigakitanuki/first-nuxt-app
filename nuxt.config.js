@@ -1,3 +1,6 @@
+import path from 'path'
+import fs from 'fs'
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -14,6 +17,10 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" },
+    ],
+    script: [
+      {src: 'https://aframe.io/releases/0.9.2/aframe.min.js'},
+      {src: 'https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js'},
     ]
   },
 
@@ -23,7 +30,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: "~/plugins/firebase.js", ssr: false }
+    { src: "~/plugins/firebase.js", ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -42,5 +49,31 @@ export default {
   },
   generate: {
     dir: 'public'
+  },
+  server: {
+    port: 8000,
+    host: '0.0.0.0',
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, "./ssl/localhost-key.pem")),
+      cert: fs.readFileSync(path.resolve(__dirname, "./ssl/localhost.pem"))
+    },
+  },
+
+  vue: {
+    config:{
+      ignoredElements: [
+        'a-scene',
+        'a-entity',
+        'a-camera',
+        'a-box',
+        'a-ring',
+        'a-asset-items',
+        'a-asset-item',
+        'a-assets',
+        'a-cursor',
+        'a-text',
+        'a-light',
+      ],
+    }
   }
 }
