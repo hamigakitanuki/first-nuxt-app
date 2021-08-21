@@ -1,11 +1,11 @@
 <template>
   <div>
     <a-scene>
-      <a-asset-item id="uribo" src="/apple.gltf"></a-asset-item>
+      <a-asset-item id="uribo" v-bind:src="modelPath"></a-asset-item>
       <a-entity
         id="animated-model"
         rotation="0 0 0"
-        position="5 0 -5"
+        position="3 0 -3"
         gltf-model="#uribo"
         scale="50 50 50"
       ></a-entity>
@@ -16,11 +16,15 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      modelPath:"",
+    };
   },
   computed: {
   },
   async mounted() {
+    let storageRef = this.$fb.storage().ref();
+    this.modelPath = storageRef.child('apple.gltf').fullPath
   },
 };
 </script>

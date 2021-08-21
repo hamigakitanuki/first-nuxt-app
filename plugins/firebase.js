@@ -1,6 +1,7 @@
 import Firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
+import 'firebase/storage'
 
 if (!Firebase.apps.length) {
   Firebase.initializeApp({
@@ -19,6 +20,7 @@ export default (context, inject) => {
     app: Firebase.app,
     auth: Firebase.auth,
     firestore: Firebase.firestore,
+    storage:Firebase.storage,
   }
   // どこからでも「this.$fb」で呼び出せる
   inject('fb', $fb)
