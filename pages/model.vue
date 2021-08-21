@@ -86,6 +86,7 @@ export default {
         .collection("items")
         .doc(id.toString())
         .set({
+          id:id,
           name:itemNameInput.value,
           text:this.$refs.itemText.value,
           image:this.$storageUrl+imageFileName,

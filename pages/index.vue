@@ -1,9 +1,6 @@
 <template>
   <div>
     <router-link class="btn btn-light" to="/form"> 投稿画面 </router-link>
-    <router-link class="btn btn-light" to="/ar" target="_blank">
-      AR画面
-    </router-link>
     <router-link class="btn btn-light" to="/model">
       モデルアップロード
     </router-link>
@@ -24,7 +21,13 @@
           <div class="card-body">
             <h5 class="card-title">{{ item.name }}</h5>
             <p class="card-text">{{ item.text }}</p>
-            <a href="#" class="btn btn-primary">商品をARで見る</a>
+            <NuxtLink
+              v-bind:to="{ name: 'ar-id', params: { id: item.id } }"
+              class="btn btn-primary"
+              target="_blank"
+            >
+              商品をARで見る
+            </NuxtLink>
           </div>
         </div>
       </li>
@@ -64,6 +67,9 @@ export default {
     }
   },
   methods: {
+    selectItemToShowAR(item){
+      this.selectItem(item)
+    },
     ...mapMutations({
       selectItem: 'item/selectItem'
     })
