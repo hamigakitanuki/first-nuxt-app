@@ -6,6 +6,18 @@
     </div>
 
     <div class="mb-3">
+      <label for="item_text" class="form-label">商品説明(100文字まで)</label>
+      <textarea
+        class="form-control"
+        id="item_text"
+        cols="30"
+        rows="10"
+        maxlength="100"
+        ref="itemText"
+      ></textarea>
+    </div>
+
+    <div class="mb-3">
       <label for="image" class="form-label">商品画像</label>
       <input id="image" class="form-control" type="file" ref="image" />
     </div>
@@ -52,19 +64,21 @@ export default {
         return
       }
 
+
       // アイテムのID
-      let id       = new Date().getTime()
+      let id = new Date().getTime()
 
       // 商品画像のアップロード
       let imageFile     = imageFileInput.files[0]
-      let imageFileName = id+imageFile.name
-      this.$fb.storage().ref().child('images/').child(imageFileName).put(imageFile)
+      let imageExt      = this.getExt(imageFile.name)
+      let imageFileName = `images/${id}.${imageExt}`
+      this.$fb.storage().ref().child(imageFileName).put(imageFile)
 
       // モデルファイルのアップロード
       let modelFile     = modelFileInput.files[0]
-      let modelFileName = id+modelFile.name
-      this.$fb.storage().ref().child('models/').child(modelFileName).put(modelFile)
-      console.log(this.$storageUrl,itemNameInput.value);
+      let modelExt      = this.getExt(modelFile.name)
+      let modelFileName = `models/${id}.${modelExt}`
+      this.$fb.storage().ref().child(modelFileName).put(modelFile)
 
       // storeに保存
       await this.$fb
@@ -73,12 +87,20 @@ export default {
         .doc(id.toString())
         .set({
           name:itemNameInput.value,
+          text:this.$refs.itemText.value,
           image:this.$storageUrl+imageFileName,
           model:this.$storageUrl+modelFileName
         });
 
       this.$router.push("/");
     },
+    //ファイル名から拡張子を取得する関数
+    getExt(filename)
+    {
+      var pos = filename.lastIndexOf('.');
+      if (pos === -1) return '';
+      return filename.slice(pos + 1);
+    }
   },
   async mounted() {
   },

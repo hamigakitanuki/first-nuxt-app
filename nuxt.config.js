@@ -51,7 +51,7 @@ export default {
     dir: 'public'
   },
   server: {
-    port: 8000,
+    port: 3000,
     host: '0.0.0.0',
     https: {
       key: fs.readFileSync(path.resolve(__dirname, "./ssl/localhost-key.pem")),
@@ -74,6 +74,8 @@ export default {
         'a-text',
         'a-light',
       ],
+      productionTip: false,
+      devtools: true
     }
   }
 }
