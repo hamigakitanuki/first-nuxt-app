@@ -22,6 +22,8 @@ export default (context, inject) => {
     firestore: Firebase.firestore,
     storage:Firebase.storage,
   }
+  const $storageUrl = 'https://storage.googleapis.com/nuxt-app-f5b1a.appspot.com/'
   // どこからでも「this.$fb」で呼び出せる
   inject('fb', $fb)
+  inject('storageUrl', $storageUrl)
 }

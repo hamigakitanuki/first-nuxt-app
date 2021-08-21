@@ -1,7 +1,10 @@
 <template>
   <div>
     <a-scene>
-      <a-asset-item id="uribo" v-bind:src="modelPath"></a-asset-item>
+      <a-asset-item
+        id="uribo"
+        v-bind:src="domainUrl + modelName"
+      ></a-asset-item>
       <a-entity
         id="animated-model"
         rotation="0 0 0"
@@ -17,14 +20,13 @@
 export default {
   data() {
     return {
-      modelPath:"",
+      domainUrl:"https://storage.googleapis.com/nuxt-app-f5b1a.appspot.com/",
+      modelName:"apple.gltf",
     };
   },
   computed: {
   },
   async mounted() {
-    let storageRef = this.$fb.storage().ref();
-    this.modelPath = storageRef.child('apple.gltf').fullPath
   },
 };
 </script>
