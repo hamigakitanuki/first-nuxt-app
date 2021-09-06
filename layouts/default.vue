@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
       <div class="container">
-        <a class="navbar-brand" href="/">Task List</a>
+        <a class="navbar-brand" href="/">ARショッピング</a>
       </div>
     </nav>
     <div class="container">

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="mb-3">
+    <a class="btn btn-primary" @click="logout">ユーザの切り替え</a>
+
+    <div class="mb-3 mt-3">
       <label for="item_name" class="form-label">商品名</label>
       <input id="item_name" class="form-control" type="text" ref="itemName" />
     </div>
@@ -15,6 +17,11 @@
         maxlength="100"
         ref="itemText"
       ></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="item_name" class="form-label">価格</label>
+      <input id="item_price" class="form-control" type="text" ref="itemPrice" />
     </div>
 
     <div class="mb-3">
@@ -47,6 +54,13 @@ export default {
       let itemNameInput = this.$refs.itemName
       if (!itemNameInput.value) {
         alert('商品名は必須です。')
+        return
+      }
+
+      // 商品価格存在検証
+      let itemPriceInput = this.$refs.itemPrice
+      if (!itemPriceInput.value) {
+        alert('価格は必須です。')
         return
       }
 
@@ -88,6 +102,7 @@ export default {
         .set({
           id:id,
           name:itemNameInput.value,
+          price:itemPriceInput.value,
           text:this.$refs.itemText.value,
           image:this.$storageUrl+imageFileName,
           model:this.$storageUrl+modelFileName
@@ -101,7 +116,11 @@ export default {
       var pos = filename.lastIndexOf('.');
       if (pos === -1) return '';
       return filename.slice(pos + 1);
-    }
+    },
+    async logout() {
+      await this.$fb.auth().signOut();
+      this.$router.push("/login");
+    },
   },
   async mounted() {
   },

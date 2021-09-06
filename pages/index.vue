@@ -1,9 +1,7 @@
 <template>
   <div>
-    <router-link class="btn btn-light" to="/form"> 投稿画面 </router-link>
-    <router-link class="btn btn-light" to="/model">
-      モデルアップロード
-    </router-link>
+    <!-- <router-link class="btn btn-light" to="/form"> 投稿画面 </router-link> -->
+    <router-link class="btn btn-light" to="/model"> 商品追加 </router-link>
     <br /><br />
     <p>商品一覧</p>
     <ul class="list-group list-group-flush">
@@ -21,6 +19,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ item.name }}</h5>
             <p class="card-text">{{ item.text }}</p>
+            <p class="card-text">{{ priceFormat(item.price) }}円</p>
             <NuxtLink
               v-bind:to="{ name: 'ar-id', params: { id: item.id } }"
               class="btn btn-primary"
@@ -32,7 +31,7 @@
         </div>
       </li>
     </ul>
-    <p>チャット</p>
+    <!-- <p>チャット</p>
     <ul class="list-group list-group-flush">
       <li
         class="list-group-item"
@@ -46,7 +45,7 @@
           {{ message.message }}
         </div>
       </li>
-    </ul>
+    </ul> -->
   </div>
 </template>
 
@@ -64,7 +63,7 @@ export default {
     },
     items() {
       return this.$store.state.item.items;
-    }
+    },
   },
   methods: {
     selectItemToShowAR(item){
@@ -72,7 +71,10 @@ export default {
     },
     ...mapMutations({
       selectItem: 'item/selectItem'
-    })
+    }),
+    priceFormat(price){
+      return new Intl.NumberFormat('ja-JP').format(price)
+    }
   },
   async mounted() {
     await this.$fb

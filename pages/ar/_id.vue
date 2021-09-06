@@ -42,9 +42,9 @@ export default {
     this.$nextTick(()=>{
       let aEntity = document.createElement('a-entity')
       aEntity.setAttribute('rotation', '0 0 0')
-      aEntity.setAttribute('position', '3 0 -3')
+      aEntity.setAttribute('position', '0 -10 -15')
       aEntity.setAttribute('gltf-model', '#item')
-      aEntity.setAttribute('scale', '50 50 50')
+      aEntity.setAttribute('scale', '1 1 1')
       scene.appendChild(aEntity)
     })
 
