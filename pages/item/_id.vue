@@ -11,7 +11,7 @@
     >
       商品をARで見る
     </NuxtLink>
-    <button>カートに入れる</button>
+    <button class="btn btn-primary" v-on:click="inCart">カートに入れる</button>
   </div>
 </template>
 
@@ -19,7 +19,8 @@
 export default {
   data() {
     return {
-      item:""
+      item:"",
+      cart:""
     };
   },
   methods:{
@@ -29,22 +30,52 @@ export default {
     priceFormat(price){
       return new Intl.NumberFormat('ja-JP').format(price)
     },
-    async submit() {
-      // storeに保存
+    async inCart() {
+      /**
+       * ログイン中か確認
+       */
+      let user = this.$fb.auth().currentUser
+      if (!user){
+        alert('ログインしてください')
+        return
+      }
+      let email = user.email;
+
+      let cart
+
+      /**
+       * 現在のカートを取得
+       */
       await this.$fb
+      .firestore()
+      .collection("cart")
+      .doc(email)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          cart = doc.data().items
+        } else {
+          console.log('カート未所持');
+        }
+      })
+
+      let items
+
+      if (cart) {
+        items = [...cart,this.item.id]
+      } else {
+        items = [this.item.id]
+      }
+
+      this.$fb
         .firestore()
-        .collection("items")
-        .doc(id.toString())
+        .collection("cart")
+        .doc(email)
         .set({
-          id:id,
-          name:itemNameInput.value,
-          price:itemPriceInput.value,
-          text:this.$refs.itemText.value,
-          image:this.$storageUrl+imageFileName,
-          model:this.$storageUrl+modelFileName
+          items:items
         });
 
-      this.$router.push("/");
+      this.$router.push("/items");
     },
   },
   async mounted() {
