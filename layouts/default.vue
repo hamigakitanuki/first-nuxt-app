@@ -36,11 +36,6 @@
                 >商品追加</NuxtLink
               >
             </li>
-            <li class="nav-item">
-              <NuxtLink to="login" class="nav-link" active-class="active"
-                >ログイン</NuxtLink
-              >
-            </li>
           </ul>
           <!-- 検索ボックス -->
           <form class="d-flex">
@@ -54,6 +49,14 @@
               Search
             </button>
           </form>
+          <div style="margin-left: 15px">
+            <p v-on:click="login" class="btn btn-primary" v-if="!loginUser">
+              ログイン
+            </p>
+            <div class="bl_login-user_container" v-if="loginUser">
+              <img v-bind:src="loginUser.photoURL" alt="" />
+            </div>
+          </div>
         </div>
       </div>
     </nav>
@@ -64,7 +67,43 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data(){
+    return{
+      loginUser:''
+    }
+  },
+  async mounted(){
+    /**
+     * 現在のログインユーザーを取得
+     */
+    this.$fb.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.loginUser = {
+          displayName:user.displayName,
+          email:user.email,
+          photoURL:user.photoURL,
+          emailVerified:user.emailVerified,
+        }
+      } else {
+      }
+    });
+  },
+  methods:{
+    async login() {
+      const provider = new this.$fb.auth.GoogleAuthProvider();
+      await this.$fb.auth().signInWithPopup(provider);
+      this.$router.push("/");
+    },
+  }
+};
 </script>
 <style lang="scss" scoped>
+.bl_login-user_container {
+  img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+  }
+}
 </style>

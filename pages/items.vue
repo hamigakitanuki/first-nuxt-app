@@ -19,6 +19,12 @@
             <p class="card-text">{{ item.text }}</p>
             <p class="card-text">{{ priceFormat(item.price) }}円</p>
             <NuxtLink
+              v-bind:to="{ name: 'item-id', params: { id: item.id } }"
+              class="btn btn-primary"
+            >
+              商品詳細
+            </NuxtLink>
+            <NuxtLink
               v-bind:to="{ name: 'ar-id', params: { id: item.id } }"
               class="btn btn-primary"
               target="_blank"
