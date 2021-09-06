@@ -31,6 +31,16 @@
                 >購入履歴</NuxtLink
               >
             </li>
+            <li class="nav-item">
+              <NuxtLink to="model" class="nav-link" active-class="active"
+                >商品追加</NuxtLink
+              >
+            </li>
+            <li class="nav-item">
+              <NuxtLink to="login" class="nav-link" active-class="active"
+                >ログイン</NuxtLink
+              >
+            </li>
           </ul>
           <!-- 検索ボックス -->
           <form class="d-flex">
