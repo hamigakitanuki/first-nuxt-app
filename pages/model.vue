@@ -1,7 +1,5 @@
 <template>
   <div>
-    <a class="btn btn-primary" @click="logout">ユーザの切り替え</a>
-
     <div class="mb-3 mt-3">
       <label for="item_name" class="form-label">商品名</label>
       <input id="item_name" class="form-control" type="text" ref="itemName" />
