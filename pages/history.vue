@@ -1,5 +1,5 @@
 <template>
-  <div>トップ</div>
+  <div>購入履歴</div>
 </template>
 
 <script>

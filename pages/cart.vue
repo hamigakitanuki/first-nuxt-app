@@ -1,5 +1,5 @@
 <template>
-  <div>トップ</div>
+  <div>カート</div>
 </template>
 
 <script>

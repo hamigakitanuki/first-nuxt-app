@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a class="btn btn-light" @click="login"> ログイン </a>
+    <a class="btn btn-light" @click="login"> Googleでログイン </a>
   </div>
 </template>
 
