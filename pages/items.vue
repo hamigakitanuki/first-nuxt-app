@@ -1,15 +1,14 @@
 <template>
   <div>
-    <router-link class="btn btn-light" to="/model"> 商品追加 </router-link>
     <br /><br />
     <p>商品一覧</p>
-    <ul class="list-group list-group-flush">
+    <ul class="bl_item-list">
       <li
-        class="list-group-item"
+        class="bl_item-list_element"
         v-for="(item, index) in items"
         v-bind:key="index"
       >
-        <div class="card" style="width: 18rem">
+        <div class="card">
           <img
             v-bind:src="item.image"
             alt=""
@@ -80,5 +79,13 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.bl_item-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  .bl_item-list_element {
+    display: inline-block;
+  }
+}
 </style>
