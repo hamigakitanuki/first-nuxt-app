@@ -115,6 +115,11 @@ export default {
       }
       let email = user.email;
 
+
+      // 日付を取得
+      let date    = new Date()
+      let buyDate = `${date.getFullYear()}/${date.getMonth()}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}`
+
       // storeに保存
       await this.$fb
         .firestore()
@@ -124,7 +129,8 @@ export default {
           id:email+"_"+time.toString(),
           email:email,
           items:this.cart,
-          totalPrice:this.totalPrice()
+          totalPrice:this.totalPrice(),
+          buyDate:buyDate,
         });
 
       // カートの中身を空にする
@@ -152,7 +158,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .list-group-item {
   display: grid;
   grid-template-columns: 100px 1fr;

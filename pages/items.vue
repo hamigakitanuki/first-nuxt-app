@@ -88,6 +88,13 @@ export default {
       .onSnapshot((collection) => {
         this.$store.dispatch("cart/getItems");
       });
+
+    await this.$fb
+      .firestore()
+      .collection("sells")
+      .onSnapshot((collection) => {
+        this.$store.dispatch("sell/getItems");
+      });
   },
 };
 </script>
