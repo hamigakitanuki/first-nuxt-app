@@ -112,7 +112,9 @@ export default {
         .collection("moveData")
         .doc(this.id)
         .set({
-          data:this.moveData
+          item_id:this.item.id,
+          data:this.moveData,
+          date:new Date().getTime()
         });
     }
   },
