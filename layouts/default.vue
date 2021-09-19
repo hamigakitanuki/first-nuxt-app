@@ -42,18 +42,6 @@
               >
             </li>
           </ul>
-          <!-- 検索ボックス -->
-          <form class="d-flex">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
           <div style="margin-left: 15px">
             <p v-on:click="login" class="btn btn-primary" v-if="!loginUser">
               ログイン

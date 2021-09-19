@@ -22,6 +22,7 @@ export default {
       {src: 'https://aframe.io/releases/1.2.0/aframe.min.js'},
       {src: 'https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js'},
       {src: 'https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js'},
+      {src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'},
     ]
   },
 
