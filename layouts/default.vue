@@ -17,27 +17,27 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <NuxtLink to="items" class="nav-link" active-class="active"
+              <NuxtLink to="/items" class="nav-link" active-class="active"
                 >商品一覧</NuxtLink
               >
             </li>
             <li class="nav-item">
-              <NuxtLink to="cart" class="nav-link" active-class="active"
+              <NuxtLink to="/cart" class="nav-link" active-class="active"
                 >カート</NuxtLink
               >
             </li>
             <li class="nav-item">
-              <NuxtLink to="history" class="nav-link" active-class="active"
+              <NuxtLink to="/history" class="nav-link" active-class="active"
                 >購入履歴</NuxtLink
               >
             </li>
             <li class="nav-item">
-              <NuxtLink to="model" class="nav-link" active-class="active"
+              <NuxtLink to="/model" class="nav-link" active-class="active"
                 >商品追加</NuxtLink
               >
             </li>
             <li class="nav-item">
-              <NuxtLink to="analytics" class="nav-link" active-class="active"
+              <NuxtLink to="/analytics" class="nav-link" active-class="active"
                 >商品分析</NuxtLink
               >
             </li>

@@ -12,8 +12,8 @@
         {{ dateTimeFormat(data.date) }}の閲覧記録
         <NuxtLink
           v-bind:to="{
-            name: 'analytics_item-moveDataId',
-            params: { moveDataId: data.id },
+            name: 'moveDataView-id',
+            params: { id: data.id },
           }"
           class="btn btn-primary"
           target="_blank"

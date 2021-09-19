@@ -142,7 +142,7 @@ export default {
 
       setInterval(() => {
         self.setMoveData();
-      }, 1000);
+      }, 100);
     })
 
   },
