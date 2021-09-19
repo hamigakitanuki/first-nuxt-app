@@ -98,6 +98,10 @@ export default {
         });
     },
     async buy(){
+      if (this.cart.length == 0){
+        alert('購入できる商品がありません')
+        return false;
+      }
       // 時間
       let time = new Date().getTime()
 
