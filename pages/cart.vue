@@ -1,14 +1,125 @@
 <template>
   <div>
-    <div>カート</div>
-    <ul>
-      <li></li>
+    <br /><br />
+    <p>カート</p>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        v-for="(item, index) in cart"
+        v-bind:key="index"
+      >
+        <img v-bind:src="item.image" alt="" class="" />
+        <div>
+          <h5 class="">{{ item.name }}</h5>
+          <p class="">{{ item.text }}</p>
+          <p class="">{{ priceFormat(item.price) }}円</p>
+          <button
+            class="btn btn-primary"
+            type="button"
+            v-on:click="outCart(index)"
+          >
+            カートから削除
+          </button>
+        </div>
+      </li>
     </ul>
+    <p>料金：{{ this.totalPrice() }}円</p>
+    <button class="btn btn-primary">購入する</button>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
+export default {
+
+  data() {
+    return {};
+  },
+  computed: {
+    cart() {
+      return this.$store.state.cart.items;
+    },
+  },
+  methods: {
+    /**
+     * 商品価格のフォーマット
+     */
+    priceFormat(price){
+      return new Intl.NumberFormat('ja-JP').format(price)
+    },
+    totalPrice(){
+      let price = 0
+      this.cart.forEach(item => {
+        price += Number(item.price)
+      });
+
+      return this.priceFormat(price)
+    },
+    async outCart(index){
+      /**
+       * ログイン中か確認
+       */
+      let user = this.$fb.auth().currentUser
+      if (!user){
+        alert('ログインしてください')
+        return
+      }
+      let email = user.email;
+
+      let cart
+
+      /**
+       * 現在のカートを取得
+       */
+      await this.$fb
+      .firestore()
+      .collection("cart")
+      .doc(email)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          cart = doc.data().items
+        } else {
+          console.log('カート未所持');
+        }
+      })
+
+      if (cart) {
+        cart.splice(index, 1)
+      }
+
+      this.$fb
+        .firestore()
+        .collection("cart")
+        .doc(email)
+        .set({
+          items:cart
+        });
+    }
+  },
+  async mounted() {
+    /*
+     * 商品一覧情報を取得
+     */
+
+    await this.$fb
+      .firestore()
+      .collection("cart")
+      .onSnapshot((collection) => {
+        this.$store.dispatch("cart/getItems");
+      });
+  },
+};
 </script>
 
-<style>
+<style lang="scss">
+.list-group-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 30px;
+  img {
+    width: 100px;
+  }
+}
 </style>
