@@ -81,6 +81,13 @@ export default {
       .onSnapshot((collection) => {
         this.$store.dispatch("item/getItems");
       });
+
+    await this.$fb
+      .firestore()
+      .collection("cart")
+      .onSnapshot((collection) => {
+        this.$store.dispatch("cart/getItems");
+      });
   },
 };
 </script>
@@ -88,8 +95,11 @@ export default {
 <style lang="scss">
 .bl_item-list {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   gap: 30px;
+  padding: 0px;
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
   .bl_item-list_element {
     display: inline-block;
   }

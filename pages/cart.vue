@@ -1,5 +1,10 @@
 <template>
-  <div>カート</div>
+  <div>
+    <div>カート</div>
+    <ul>
+      <li></li>
+    </ul>
+  </div>
 </template>
 
 <script>
