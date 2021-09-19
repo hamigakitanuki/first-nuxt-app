@@ -112,6 +112,7 @@ export default {
         .collection("moveData")
         .doc(this.id)
         .set({
+          id:this.id,
           item_id:this.item.id,
           data:this.moveData,
           date:new Date().getTime()

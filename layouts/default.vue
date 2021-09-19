@@ -36,6 +36,11 @@
                 >商品追加</NuxtLink
               >
             </li>
+            <li class="nav-item">
+              <NuxtLink to="analytics" class="nav-link" active-class="active"
+                >商品分析</NuxtLink
+              >
+            </li>
           </ul>
           <!-- 検索ボックス -->
           <form class="d-flex">
