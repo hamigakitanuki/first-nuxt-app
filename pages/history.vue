@@ -1,7 +1,7 @@
 <template>
   <div>
     <br /><br />
-    <p>購入履歴</p>
+    <h2>購入履歴</h2>
     <ul class="list-group">
       <li
         class="list-group-item"

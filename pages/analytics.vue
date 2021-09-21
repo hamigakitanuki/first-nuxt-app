@@ -1,7 +1,7 @@
 <template>
   <div>
     <br /><br />
-    <p>商品一覧</p>
+    <h2>分析商品一覧</h2>
     <ul class="bl_item-list">
       <li
         class="bl_item-list_element"

@@ -1,7 +1,7 @@
 <template>
   <div>
     <br /><br />
-    <p>商品一覧</p>
+    <h2>商品一覧</h2>
     <ul class="bl_item-list">
       <li
         class="bl_item-list_element"
@@ -104,11 +104,19 @@ export default {
   display: grid;
   gap: 30px;
   padding: 0px;
+  margin-top: 30px;
   @media screen and (min-width: 768px) {
     grid-template-columns: 1fr 1fr 1fr;
   }
   .bl_item-list_element {
     display: inline-block;
+    img {
+      height: 200px;
+      object-fit: cover;
+    }
   }
+}
+h2 {
+  text-align: center;
 }
 </style>

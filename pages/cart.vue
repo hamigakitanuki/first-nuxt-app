@@ -1,7 +1,7 @@
 <template>
   <div>
     <br /><br />
-    <p>カート</p>
+    <h2>カート</h2>
     <ul class="list-group">
       <li
         class="list-group-item"
