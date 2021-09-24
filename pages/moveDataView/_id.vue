@@ -70,8 +70,6 @@ export default {
   },
 
   async mounted() {
-
-
     // firebaseオブジェクト
     const db = this.$fb.firestore()
     await db.collection("moveData").doc(this.$route.params.id.toString()).get().then((doc)=>{
@@ -90,7 +88,6 @@ export default {
     this.$nextTick(()=>{
       this.modelView();
     })
-
   },
 };
 </script>

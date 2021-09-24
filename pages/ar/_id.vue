@@ -1,10 +1,14 @@
 <template>
   <div
-    v-on:mousemove="mouseMove"
-    v-on:mousedown="onMouseDown"
-    v-on:mouseup="onMouseUp"
+    v-on:pointermove="mouseMove"
+    v-on:pointerdown="onMouseDown"
+    v-on:pointerup="onMouseUp"
   >
-    <a-scene ref="scene" style="z-index: 9999">
+    <a-scene
+      ref="scene"
+      style="z-index: 9999"
+      arjs="sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180"
+    >
       <!-- <a-assets>
         <img id="boxTexture" src="https://i.imgur.com/mYmmbrp.jpg" />
       </a-assets>
@@ -39,17 +43,6 @@ export default {
     };
   },
   methods:{
-    async popstateHook() {
-      await this.popstateEvent().then(async (value) => {
-        if (value === 'フォームでのpopstateイベント' && this.$route.name === 'user_register') {
-          // ルートが変更画面のままなら進むボタンと判断して確認画面へ進む処理を行う
-          // 履歴のスタックに現在の URL を追加
-          history.pushState(null, '', null);
-          // 確認画面を表示
-          this.showConfirm = true;
-        }
-      });
-    },
     // モデルのロード
     modelLoad(){
       let aAseetItem = document.createElement('a-asset-item')
@@ -121,8 +114,6 @@ export default {
   },
 
   async mounted() {
-
-
     // firebaseオブジェクト
     const db = this.$fb.firestore()
     await db.collection("items").doc(this.$route.params.id.toString()).get().then((doc)=>{
@@ -144,10 +135,14 @@ export default {
         self.setMoveData();
       }, 100);
     })
-
   },
 };
 </script>
 
 <style>
+body {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0px !important;
+}
 </style>

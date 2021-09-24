@@ -1,8 +1,14 @@
 <template>
   <div>
-    <img v-bind:src="item.image" alt="" />
-    <p>商品名:{{ item.name }}</p>
-    <p>商品説明:{{ item.text }}</p>
+    <div class="bl_detail_page">
+      <img v-bind:src="item.image" alt="" />
+      <div>
+        <span>商品名:</span>
+        <p>{{ item.name }}</p>
+        <span>商品説明:</span>
+        <p>{{ item.text }}</p>
+      </div>
+    </div>
     <ul class="list-group">
       <li
         class="list-group-item"
@@ -55,5 +61,33 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.bl_detail_page {
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  gap: 30px;
+  width: 100%;
+  img {
+    width: 100%;
+    border: 1px solid #aaa;
+  }
+  p {
+    font-size: 30px;
+  }
+  span:nth-child(n + 2) {
+    display: block;
+    margin-top: 30px;
+  }
+  .btns {
+    margin-top: 60px;
+  }
+}
+.list-group {
+  margin-top: 30px;
+  .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
 </style>

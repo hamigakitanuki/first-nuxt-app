@@ -46,18 +46,6 @@ export default {
   },
   methods: {
     /**
-     * 商品選択
-     */
-    selectItemToShowAR(item){
-      this.selectItem(item)
-    },
-    /**
-     * 商品モデルの関数呼び出し
-     */
-    ...mapMutations({
-      selectItem: 'item/selectItem'
-    }),
-    /**
      * 商品価格のフォーマット
      */
     priceFormat(price){
@@ -73,13 +61,6 @@ export default {
       .collection("items")
       .onSnapshot((collection) => {
         this.$store.dispatch("item/getItems");
-      });
-
-    await this.$fb
-      .firestore()
-      .collection("cart")
-      .onSnapshot((collection) => {
-        this.$store.dispatch("cart/getItems");
       });
   },
 };

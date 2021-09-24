@@ -4,23 +4,23 @@
     <h2>購入履歴</h2>
     <ul class="list-group">
       <li
-        class="list-group-item"
+        class="bl_list-group-item"
         v-for="(item, index) in sells"
         v-bind:key="index"
       >
-        <p class="">購入日:{{ item.buyDate }}</p>
-        <p class="">合計:{{ item.totalPrice }}円</p>
+        <p>購入日:{{ item.buyDate }}</p>
+        <p>合計:{{ item.totalPrice }}円</p>
         <ul class="list-group">
           <li
-            class="list-group-item list-group-item_inner"
+            class="list-group-item_inner"
             v-for="(item, index) in item.items"
             v-bind:key="index"
           >
-            <img v-bind:src="item.image" alt="" class="" />
+            <img v-bind:src="item.image" alt="" />
             <div>
-              <h5 class="">{{ item.name }}</h5>
-              <p class="">{{ item.text }}</p>
-              <p class="">{{ priceFormat(item.price) }}円</p>
+              <h5>{{ item.name }}</h5>
+              <p>{{ item.text }}</p>
+              <p>{{ priceFormat(item.price) }}円</p>
             </div>
           </li>
         </ul>
@@ -60,13 +60,22 @@ export default {
 </script>
 
 <style lang="scss">
-.list-group-item {
+.bl_list-group-item {
+  display: grid;
+  grid-template-columns: 200px 200px 1fr;
+  border: 1px solid #aaa;
+  padding: 30px;
+  .list-group {
+    margin-top: 0px !important;
+  }
   .list-group-item_inner {
+    border: 1px solid #aaa;
+    padding: 20px;
     display: grid;
-    grid-template-columns: 50px 1fr;
+    grid-template-columns: 150px 1fr;
     gap: 15px;
     img {
-      width: 50px;
+      width: 150px;
     }
   }
 }
